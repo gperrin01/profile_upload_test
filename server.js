@@ -36,6 +36,7 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 });
 
 function sendMail (username, email) {
+
   var text = "Dear " + username + ", \n" + "Thank you for registering with our app. Your details have been saved along with your profile picture. See you!";
 
   smtpTransport.sendMail({
@@ -60,12 +61,25 @@ app.post('/profiles', upload.single('picture'), function (req, res) {
   console.log('file', req.file);
 
   // Ensure User is in the UK
+  unirest.get("https://freegeoip.net/json")
+  .end(function (result){
+    console.log('result IP', result.status, result.body);
+    if (result.status !== 200) {
+      res.send('An error occured as we are unable to confirm your are in the UK')
+    }
+    else if (result.body.country_code !== 'GB') {
+      res.send('You need to be within the UK to register')
+    }
+    else {
+      // OK UK, perform checks on face recognition
+    }
+  })
 
 
   // Ensure there is a face in the pic
   // if no pic, skip this process
   if (req.file){
-    
+
     unirest.post("https://apicloud-facerect.p.mashape.com/process-file.json")
     .header("X-Mashape-Key", process.env.MASHAPE_FACERECT)
     .attach("image", fs.createReadStream(req.file.path))
