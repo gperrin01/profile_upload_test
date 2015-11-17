@@ -7,7 +7,7 @@
 - Provide the code in an open github repo and give a test URL 
 
 
-# I used Node and learnt quite a lot with packages I had not used before
+# I used a few Node packages I had not tried before
 
 - Node Multer middleware to handle file uploads and save to disk
 
@@ -18,3 +18,7 @@
 - Nodemailer for mails
 
 - IP address check
+
+# To make it better
+
+Use promises in the big post route in the server in order to avoid the multiple lines nested within the callbacks for success or failure of some API calls.
