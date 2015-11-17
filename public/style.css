@@ -1,1 +1,6 @@
-
+.glyphicon-heart {
+  color: red;
+}
+.glyphicon-heart:hover {
+  color: blue;
+}
