@@ -10,6 +10,9 @@ server.listen(8088, function(){
   console.log('listening on port', 8088);
 }); 
 
+// adding basic cors for use outside of locahost
+cors = require('cors')
+
 app.use(express.static(__dirname + '/public'));
 app.set('/views', './views');
 app.set('view engine', 'ejs');
@@ -59,7 +62,7 @@ app.get('/', function (req, res) {
   res.render('index');
 })
 
-app.post('/profiles', upload.single('picture'), function (req, res) {
+app.post('/profiles', cors(), upload.single('picture'), function (req, res) {
 
   console.log('body', req.body);
   console.log('file', req.file);
