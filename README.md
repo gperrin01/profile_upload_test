@@ -21,4 +21,6 @@
 
 # To make it better
 
-Use promises in the big post route in the server in order to avoid the multiple lines nested within the callbacks for success or failure of some API calls.
+- Use promises in the big post route in the server in order to avoid the multiple lines nested within the callbacks for success or failure of some API calls.
+
+- Show preview of the uploaded picture
