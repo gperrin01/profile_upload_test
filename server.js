@@ -16,7 +16,8 @@ app.set('view engine', 'ejs');
 
 // discovered Multer npm for file upload
 var multer  = require('multer');
-var upload = multer({dest: __dirname + '/uploads/'});
+var upload = multer({
+        dest: __dirname + '/uploads/'});
 
 
 /*************************************
@@ -27,10 +28,8 @@ app.get('/', function (req, res) {
   res.render('index');
 })
 
-app.post('/profiles', upload, function (req, res, next) {
+app.post('/profiles', upload.single('picture'), function (req, res) {
   console.log('body', req.body);
   console.log('file', req.file);
-
-
 })
 
