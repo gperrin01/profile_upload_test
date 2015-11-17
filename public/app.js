@@ -1,7 +1,5 @@
 $(document).ready(function(){
-
   $('#form').on('submit', submitForm)
-
 })
 
 var server = 'http://localhost:8088';
@@ -10,6 +8,9 @@ function submitForm () {
   event.preventDefault();
   var fd = new FormData($('#form')[0]);
 
+  // show spinner while we wait for results
+  toggleSpinner('on');
+
   $.ajax({
     type: 'POST', 
     url: server + '/profiles', 
@@ -17,9 +18,23 @@ function submitForm () {
     processData: false,
     contentType: false
     }).then(function (response) {
-      console.log('resp ajax', response);
-      // if error, display error
-      // otherwise display thanks and say email has been sent
+      // display success or error message
+      toggleSpinner('off')
+      var banner = $('h4');
+      banner.text(response.text)
+      response.status === 'error' ? banner.addClass('bg-danger text-danger') : banner.addClass('bg-success text-success');
   })
 }
 
+function toggleSpinner(status) {
+  var form = $('#form');
+  var wait = $('#wait');
+  if (status === 'on') {
+    wait.removeClass('hide');
+    form.addClass('hide')
+  }
+  else {
+    wait.addClass('hide');
+    form.removeClass('hide');
+  }
+}

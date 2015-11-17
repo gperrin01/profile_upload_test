@@ -37,13 +37,16 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 
 function sendMail (username, email) {
 
-  var text = "Dear " + username + ", \n" + "Thank you for registering with our app. Your details have been saved along with your profile picture. See you!";
+  var text = "Dear " + username + ", \n" + "Thank you for registering with our app. Your details have been saved. See you!";
 
   smtpTransport.sendMail({
-   from: "Guillaume <me@camelia.com>",
+   from: "Camelia <me@camelia.com>",
    to: username + "<" + email + ">", 
    subject: "Registration Complete", 
    text: text
+  },  function(error, response){
+   if (error) console.log('MAIL ERROR', error);
+   else console.log("MAIL SUCCESS: " + response.message);
   })
 }
 
@@ -57,6 +60,7 @@ app.get('/', function (req, res) {
 })
 
 app.post('/profiles', upload.single('picture'), function (req, res) {
+
   console.log('body', req.body);
   console.log('file', req.file);
 
@@ -65,43 +69,43 @@ app.post('/profiles', upload.single('picture'), function (req, res) {
   .end(function (result){
     console.log('result IP', result.status, result.body);
     if (result.status !== 200) {
-      res.send('An error occured as we are unable to confirm your are in the UK')
+      res.send({status: 'error', text: 'An error occured as we are unable to confirm your are in the UK'})
     }
     else if (result.body.country_code !== 'GB') {
-      res.send('You need to be within the UK to register')
+      res.send({status: 'error', text: 'You need to be within the UK to register'})
     }
     else {
-      // OK UK, perform checks on face recognition
+      runFaceRecognition();
     }
   })
 
 
-  // Ensure there is a face in the pic
-  // if no pic, skip this process
-  if (req.file){
+  function runFaceRecognition() {
+    // if no pic has been uploaded we skip this altogether
+    if (req.file){
 
-    unirest.post("https://apicloud-facerect.p.mashape.com/process-file.json")
-    .header("X-Mashape-Key", process.env.MASHAPE_FACERECT)
-    .attach("image", fs.createReadStream(req.file.path))
-    .end(function (result) {
-      console.log('faces: ', result.status, result.headers, result.body);
-      if (result.status === 200) {
-        // if uk and face, send an email
-        // then render ok thanks
-        if (result.body.faces.length > 0) {
-          sendMail(req.body.name, req.body.email);
-          res.send('Your registration is complete. You will shortly receive a confirmation email.')
+      unirest.post("https://apicloud-facerect.p.mashape.com/process-file.json")
+      .header("X-Mashape-Key", process.env.MASHAPE_FACERECT)
+      .attach("image", fs.createReadStream(req.file.path))
+      .end(function (result) {
+
+        console.log('faces: ', result.status, result.headers, result.body);
+        if (result.status === 200) {
+          if (result.body.faces.length > 0) {
+            sendMail(req.body.name, req.body.email);
+            res.send({status: 'OK', text: 'Your registration is complete. You will shortly receive a confirmation email.'})
+          }
+          else res.send({status: 'error', text: 'Please upload a picture with a human face on.'});
         }
-        else {
-          res.send('Please upload a picture with a human face on.');
-        }
-      }
-      else {
-        res.send('An error occured, probaly due to your file being too large. Please try again with a smaller file.');
-      }
-    });
+        else res.send({status: 'error', text: 'An error occured, probaly due to your file being too large. Please try again with a smaller file.'});
+      });
+
+    } // if no pic has been uploaded
+    else {
+      sendMail(req.body.name, req.body.email);
+      res.send({status: 'OK', text: 'Your registration is complete. You will shortly receive a confirmation email.'})
+    }  
   }
-
 
 })
 

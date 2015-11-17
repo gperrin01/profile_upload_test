@@ -8,7 +8,7 @@
   <script src='app.js'></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <link href="style.css" rel="stylesheet">
 </head>
@@ -37,29 +37,34 @@
     <div class="col-xs-offset-2 col-xs-8">
       <h4>Fill in your profile information</h4>
 
+      <div id="wait" class='hide'>
+        <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        <p>Just a moment as we process your request</p>
+      </div>
+
       <form id="form" enctype='multipart/form-data'>
         <div class="form-group">
           <label for="inputUsername">Username</label>
           <input type="text" name='name' class="form-control" id="inputUsername" placeholder="Username">
         </div>      
-<!--         <div class="form-group">
+         <div class="form-group">
           <label for="inputEmail">Email address</label>
           <input type="email" class="form-control" name='email' id="inputEmail" placeholder="Email">
         </div>
--->
+
         <div class="form-group">
           <label for="inputFile">Upload profile picture (optional)</label>
           <input type="file" name='picture' id="inputFile">
         </div>
-<!--         <div class="checkbox">
+        <div class="checkbox">
           <label>
             <input type="checkbox"> I agree with those horrendous terms and conditions
           </label>
-        </div> -->
+        </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
 
-      <!-- use EJS to display error message -->
+
     </div>
 
   </div>

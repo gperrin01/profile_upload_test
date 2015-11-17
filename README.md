@@ -14,3 +14,5 @@ Learnt quite a lot of new cool features:
 - API for face recognition using unirest quick http request and the node file system
 
 - Nodemailer for mails
+
+- IP address check

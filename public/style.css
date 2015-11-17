@@ -4,3 +4,22 @@
 .glyphicon-heart:hover {
   color: blue;
 }
+
+#wait {
+  text-align: center;
+  position: relative;
+  top: 100px;
+}
+
+#wait i {
+  color: red;
+}
+
+#wait p {
+  margin: 20px;
+  font-size: 20px;
+}
+
+.hide {
+  display: none;
+}
