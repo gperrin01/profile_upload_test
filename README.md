@@ -1,3 +1,4 @@
+# A code test
 - Implement a single page application or script
 - That presents a form to the user to fill out
 - The form should ask for basic profile information, and allow the user to upload a photo (optional)
@@ -6,9 +7,10 @@
 - Provide the code in an open github repo and give a test URL 
 
 
-Learnt quite a lot of new cool features:
+# I used Node and learnt quite a lot with packages I had not used before
 
 - Node Multer middleware to handle file uploads and save to disk
+
 - use Html5 FormData to send a file through Ajax request + specify processData and contenType attribute  (must put enctype in the form and not in the contenttype as it would remove the boundary and get an error)
 
 - API for face recognition using unirest quick http request and the node file system
