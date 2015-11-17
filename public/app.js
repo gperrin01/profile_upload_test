@@ -9,8 +9,6 @@ var server = 'http://localhost:8088';
 function submitForm () {
   event.preventDefault();
   var fd = new FormData($('#form')[0]);
-  // fd.append('file', $('#inputFile')[0].files[0]);
-  // fd.append('name', $('#inputUsername').val())
 
   $.ajax({
     type: 'POST', 
@@ -20,6 +18,8 @@ function submitForm () {
     contentType: false
     }).then(function (response) {
       console.log('resp ajax', response);
+      // if error, display error
+      // otherwise display thanks and say email has been sent
   })
 }
 
