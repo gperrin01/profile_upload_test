@@ -37,27 +37,25 @@
     <div class="col-xs-offset-2 col-xs-8">
       <h4>Fill in your profile information</h4>
 
-      <form>
+      <form id="form" enctype='multipart/form-data'>
         <div class="form-group">
           <label for="inputUsername">Username</label>
-          <input type="text" class="form-control" id="inputUsername" placeholder="Username">
-        </div>      <div class="form-group">
+          <input type="text" name='name' class="form-control" id="inputUsername" placeholder="Username">
+        </div>      
+<!--         <div class="form-group">
           <label for="inputEmail">Email address</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+          <input type="email" class="form-control" name='email' id="inputEmail" placeholder="Email">
         </div>
-        <div class="form-group">
-          <label for="inputPassword">Password</label>
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-        </div>
+-->
         <div class="form-group">
           <label for="inputFile">Upload profile picture (optional)</label>
-          <input type="file" id="inputFile">
+          <input type="file" name='picture' id="inputFile">
         </div>
-        <div class="checkbox">
+<!--         <div class="checkbox">
           <label>
             <input type="checkbox"> I agree with those horrendous terms and conditions
           </label>
-        </div>
+        </div> -->
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
 

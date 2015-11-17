@@ -14,9 +14,9 @@ app.use(express.static(__dirname + '/public'));
 app.set('/views', './views');
 app.set('view engine', 'ejs');
 
-// body parser config for post requests on the form
-var bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: true }));
+// discovered Multer npm for file upload
+var multer  = require('multer');
+var upload = multer({dest: __dirname + '/uploads/'});
 
 
 /*************************************
@@ -26,3 +26,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', function (req, res) {
   res.render('index');
 })
+
+app.post('/profiles', upload, function (req, res, next) {
+  console.log('body', req.body);
+  console.log('file', req.file);
+
+
+})
+
