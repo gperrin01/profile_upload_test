@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Camelia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src='app.js'></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Bootstrap Nav Bar -->
+  <nav id="main-navbar" class="navbar navbar-default">
+    <div id="main_navbar_container" class="container-fluid">
+      <div class="navbar-header">
+        <ul class="nav navbar-nav navbar-left">
+           <li><a id="brand_name" class="navbar-brand" href="/">Camelia Web</a></li>
+        </ul>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/gperrin01/profile_upload_test">Code on Github</a></li>
+        <li><a href="#">I <span class="glyphicon glyphicon-heart"></span> Camelia</a></li>
+      </ul> 
+    </div>   
+  </nav> 
+  <!-- End Navbar -->
+
+  <!-- Container for the chat / keep everything in one column with offset-->
+  <div class="container-fluid">
+
+    <div class="col-xs-offset-2 col-xs-8 column">
+      <h4>Fill in your profile information</h4>
+
+    <form>
+      <div class="form-group">
+        <label for="inputUsername">Username</label>
+        <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+      </div>      <div class="form-group">
+        <label for="inputEmail">Email address</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="inputFile">Upload profile picture (optional)</label>
+        <input type="file" id="inputFile">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> I agree with those horrendous terms and conditions
+        </label>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+      <!-- use EJS to display error message -->
+    </div>
+
+  </div>
+  
+</body>
+</html>
