@@ -74,7 +74,7 @@ app.post('/profiles', cors(), upload.single('picture'), function (req, res) {
     if (result.status !== 200) {
       res.send({status: 'error', text: 'An error occured as we are unable to confirm your are in the UK'})
     }
-    else if (result.body.country_code !== 'GB') {
+    else if (result.body.country_code !== 'FR') {
       res.send({status: 'error', text: 'You need to be within the UK to register'})
     }
     else {
